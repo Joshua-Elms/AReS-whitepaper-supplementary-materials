@@ -1,0 +1,5 @@
+1. Freeze new requirements.txt / env.yaml
+2. Create improved README.md file to guide users in the web service
+3. Verify comments and docs in code/AutoML/utils and main
+4. Improve ipynb performance analysis file
+5. Include dataset info (and origins) in README
