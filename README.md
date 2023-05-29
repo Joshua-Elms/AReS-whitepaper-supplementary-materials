@@ -68,7 +68,7 @@ All of the figures in the paper can be generated using the above generated data.
 3. Find the best RMSE from `perf_stats_test_best_models_<id>.csv` for use in step 6.
 4. Download the submission leaderboard for that competition ([example](https://www.kaggle.com/competitions/playground-series-s3e9/leaderboard)) and record the file name (not path) for step 6. 
 5. Place leaderboard file under `datasets/kaggle_leaderboards/`.
-6. Run each cell `code/case_studies/create_distribution.ipynb` after setting `ARES_RMSE` and `LEADERBOARD` from steps 3 and 4, respectively.
+6. Run each cell in `code/case_studies/create_distribution.ipynb` after setting `ARES_RMSE` and `LEADERBOARD` from steps 3 and 4, respectively.
 
 Email Joshua Elms (joshua.elms111@gmail.com) for questions.
 
