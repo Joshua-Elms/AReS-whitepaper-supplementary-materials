@@ -16,6 +16,7 @@ import warnings
 warnings.filterwarnings('ignore')
 from inspect import signature, _empty
 
+
 def validation(datapath: str) -> None:
     """
     This functon validates if a dataset is of all numeric type and does not exceed the dimensions of 10,000 x 100.
@@ -337,8 +338,8 @@ def comparison_wrapper(setting: int, conf: dict) -> dict:
 
 
 
-def comparison(id: int, which_regressors: dict, metric_list: list, n_vizualized_tb: int, test_set_size: float,
-               n_cv_folds: int, score_method: str, datapath: str, n_workers: int, figure_lst: list) -> list:
+def comparison(id: int, which_regressors: dict, metric_list: list, test_set_size: float,
+               n_cv_folds: int, score_method: str, datapath: str, n_workers: int, figure_lst: list, n_vizualized_tb: int = 1) -> list:
     """
     This function will perform cross-validation training across several regressor types for one dataset. It will
     also deploy other functions to generate additional visualizations.
@@ -426,15 +427,15 @@ def comparison(id: int, which_regressors: dict, metric_list: list, n_vizualized_
     
     # the figure lookup dict has to include the parameters that will be passed to any functions it calls
     figure_lookup = {'Accuracy_over_Various_Proportions_of_Training_Set': (gen_and_write_training_test_data, (
-                        regs, reg_names, train_attribs, train_labels, path_gen('Accuracy_over_Various_Proportions_of_Training_Set'), metric_list, metric_help
+                        regs, reg_names, train_attribs, train_labels, path_gen('quantity_curve'), metric_list, metric_help
                         )),
                     'Error_by_Datapoint': (error_viz, (
                         fin_org_results, train_attribs, train_labels, test_attribs, test_labels, 
-                        train_attribs_idx, train_labels_idx, test_attribs_idx, test_labels_idx, n_cv_folds, metric_help, path_gen('Error_by_Datapoint')
+                        train_attribs_idx, train_labels_idx, test_attribs_idx, test_labels_idx, n_cv_folds, metric_help, path_gen('point_errors')
                         )),
                     'Test_Best_Models': (test_best, (
                         fin_org_results, metric_list, train_attribs, train_labels, test_attribs, test_labels, metric_help, n_vizualized_tb, 
-                        path_gen('Test_Best_Models')
+                        path_gen('test_best_models')
                         ))
                     }
     
