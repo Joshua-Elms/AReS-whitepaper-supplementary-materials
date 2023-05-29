@@ -1,4 +1,27 @@
 from utils import *
+"""
+Initialization Parameters:
+
+        id (int) - request id for particular comparison run
+        
+        datapath (str) - a file path of the csv data
+
+        which_regressors (dict) - dictionary of key:value pairs of form <'RegressorName'> : <Bool(0)|Bool(1)>
+
+        metric_list (list) - the regressors will be evaluated on these metrics during cross-validation and visualized
+
+        n_vizualized_tb (int) - the top scoring 'n' regressors over the test set to be included in final table. The value -1 will include all regressors (Default: -1)
+
+        test_set_size (float) - a number between 0 and 1 that indicates the proportion of data to be allocated to the test set (Default: 0.2)
+
+        n_cv_folds (int) - the number of folds for k-fold cross validation training (Default: 10)
+
+        score_method (str) - the regressors will be evaluated on this metric to determine which regressors perform best (Default: 'Root Mean Squared Error')
+                
+        n_workers (int) - (n_workers != 1 ONLY PARTIALLY SUPPORTED) this determines whether the 'run' function is performed serially or with multiple concurrent processors. 
+        
+        figure_lst (list) - a list of the names of the figures to be generated on the frontend that require a separate process in the backend
+"""
 
 paramdict = {'id': 30,
             'datapath': 'datasets/test_datasets/concrete.csv',

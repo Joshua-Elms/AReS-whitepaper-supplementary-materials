@@ -1,6 +1,6 @@
 # AReS Startup Guide
 
- <img src="assets/ares_logo.png" alt= 'ares' width=100> <img src="assets/hoosiers.png" alt= “IU” width=100 height=128>
+ <img src=".assets/ares_logo.png" alt= 'ares' width=100> <img src=".assets/hoosiers.png" alt= “IU” width=100 height=128>
 
 This repository is intended to allow readers of "AReS: An AutoML Regression Service for Data Analytics and Novel Data-centric Visualizations" \[[paper]()\] to replicate the authors' results.
 
@@ -25,7 +25,7 @@ To run AReS for yourself, you will have to set the parameters for the run in `co
 
 * `datapath`
 
-    The filepath of the data that you would like to run AReS on. AReS will attempt to predict the last column using the rest of the columns. The case studies presented in the paper are located at `datasets/kaggle_datasets`, but other examples can be found in `datasets/test_datasets`.
+    The filepath of the data that you would like to run AReS on. AReS will attempt to predict the last column using the rest of the columns. The case studies presented in the paper are located at `datasets/kaggle_datasets` ([concrete](https://www.kaggle.com/competitions/playground-series-s3e9) and [paris](https://www.kaggle.com/competitions/playground-series-s3e6)), but other examples can be found in `datasets/test_datasets`.
 
 * `which_regressors`
     
@@ -34,6 +34,8 @@ To run AReS for yourself, you will have to set the parameters for the run in `co
 * `figure_lst`
 
     This is a list of the figures discussed in the paper will have their data produced. We do not provide code to duplicate our visualizations here, as the paper shows images from a web-based tool called [Apache ECharts](https://echarts.apache.org/en/index.html).
+
+See the rest of the parameters in `code/AutoML/main.py`
 
 Once the parameters have been set, run AReS with
 ```
@@ -60,8 +62,13 @@ The code for AReS produces up to four files, which are detailed below
 
     Column 0 is the particular regressor. Columns 1 and on are metrics. Each value indicates the how well the regressor performed in prediction on the initially held-out data, according to some error metric. Only the m best models are shown here, according to the parameter set in program configuration.
 
-All of the figures in the paper can be generated using the above generated data. AReS performance against other Kaggle submissions can be determined by using AReS to predict the target values for some Kaggle competition's data and then downloading the submission leaderboard for that competition ([example](https://www.kaggle.com/competitions/playground-series-s3e9/leaderboard)). This leaderboard file should can be placed under `datasets/kaggle_leaderboards/`
-and used to produce the same histograms as shown in the paper.
+All of the figures in the paper can be generated using the above generated data. AReS performance against other Kaggle submissions can be determined by
+1. Set AReS' `datapath` parameter to point to a dataset downloaded from a [Kaggle competition](https://www.kaggle.com/competitions). 
+2. Run AReS to predict the target values for the downloaded dataset.
+3. Find the best RMSE from `perf_stats_test_best_models_<id>.csv` for use in step 6.
+4. Download the submission leaderboard for that competition ([example](https://www.kaggle.com/competitions/playground-series-s3e9/leaderboard)) and record the file name (not path) for step 6. 
+5. Place leaderboard file under `datasets/kaggle_leaderboards/`.
+6. Run each cell `code/case_studies/create_distribution.ipynb` after setting `ARES_RMSE` and `LEADERBOARD` from steps 3 and 4, respectively.
 
 Email Joshua Elms (joshua.elms111@gmail.com) for questions.
 
@@ -73,5 +80,3 @@ If you find this work useful, cite it using:
   year={2023}
 }
 ```
-
-
